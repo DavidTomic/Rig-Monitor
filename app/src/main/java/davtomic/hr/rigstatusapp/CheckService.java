@@ -141,9 +141,10 @@ public class CheckService extends Service {
 
             try {
                 JSONObject jsonObject = new JSONObject(s);
-                JSONObject infoObject = jsonObject.getJSONObject("per_info").getJSONObject("claymore");
-                int aliveGpus = infoObject.getInt("per_alive_gpus");
+                int aliveGpus = jsonObject.getInt("alive_gpus");
+                Log.i(TAG, "aliveGpus " + aliveGpus);
                 if (aliveGpus != 18) {
+                    Log.i(TAG, "SEND");
                     String msg = "herceg rig: broj aktivnih kartica je " + aliveGpus;
                     CheckService checkService = checkServiceReference.get();
                     checkService.showNotification(msg);
